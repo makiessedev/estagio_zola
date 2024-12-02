@@ -1,0 +1,267 @@
+ <!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de perguntas</title>
+    <style>
+        body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f5f5f5;
+}
+
+.Quadrado {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+h1 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1em;
+  margin: 10px 0;
+}
+
+button {
+  background-color: #004d40;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+button:hover {
+  background-color: #00352e;
+}
+
+#result {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+#boton {
+display: flex;
+justify-content: center;
+  align-items: center;
+  margin: 2%;
+  padding: 20px;
+
+}
+
+#botao{
+    margin: 5%;
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="Quadrado">
+        <h1>Jogos de perguntas</h1>
+
+
+        <h4><p id="pergunta">O dia tem 24 horas. Qual fração representa 5 horas do dia?</p></h4>
+           
+        <form id="formulario_de_pergunta">
+
+          <input type="radio" id="radio1"  name="option" value="1" >
+          <label id="lab1" for="radio1"> 
+           5/20
+          </label><br>
+           
+          <input type="radio" id="radio2" name="option" value="2" >
+          <label id="lab2" for="radio2">
+           5/24
+          </label><br>
+
+          <input type="radio" id="radio3" name="option" value="3" >
+          <label id="lab3" for="radio3">
+           5/25
+          </label><br>
+
+          <div id="boton">
+          <button  type="button"  id="botao" onclick="Avançar1(this)"   >Avançar</button>
+          <button type="button" id="botao" onclick="verificar_a_resposta()"   >OK</button>
+          </div>
+          
+        </form>
+
+
+        <p id="Pontuação"></p>
+        <p id="resultado"></p>
+
+     </div>
+
+
+
+
+<script>
+
+        const resultado = document.getElementById("resultado");
+        var controle = 0;
+        pergunta = document.getElementById("pergunta");
+        let  labe1 = document.getElementById("lab1");
+        let  labe2 = document.getElementById("lab2");
+        let  labe3 = document.getElementById("lab3");
+
+        let  radio1 = document.getElementById("radio1");
+        let  radio2 = document.getElementById("radio2");
+        let  radio3 = document.getElementById("radio3");
+      
+        let opcao = document.getElementsByName("option");
+
+
+
+
+function Avançar1(){
+
+
+if(radio1.checked){
+    radio1.checked = !radio1.checked;
+}else if(radio2.checked){
+    radio2.checked = !radio2.checked;
+}else if(radio3.checked){
+    radio3.checked = !radio3.checked;
+}
+     
+       
+ 
+    controle = controle + 1;
+    resultado.textContent = "";
+
+
+if(controle==0){
+    
+    pergunta.innerHTML = "nnova pergunta1";
+    labe1.title= "novoValor02";
+    labe2.innerText= "novoValor02";
+    labe3.textContent= "novoValor03";
+
+}
+
+
+if(controle==1){
+    
+    pergunta.innerHTML = "nnova pergunta1";
+    labe1.title= "novoValor02";
+    labe2.innerText= 23;
+    labe3.textContent= "novoValor03";
+
+}
+
+if(controle==2){
+    
+    pergunta.innerHTML = "nnova pergunta2";
+    labe1.innerHTML = "novoValor012";
+    labe2.innerHTML = "novoValor022";
+    labe3.innerHTML = "novoValor032";
+}
+
+if(controle==3){
+    
+    pergunta.innerHTML = "nnova pergunta3";
+    labe1.innerHTML = "novoValor013";
+    labe2.innerHTML = "novoValor023";
+    labe3.innerHTML = "novoValor033";
+}
+
+
+}
+
+
+
+function verificar_a_resposta() {
+
+
+             let valor_radio = null;
+
+
+
+            for (const opcao10 of opcao) 
+            {
+                    if (opcao10.checked) {
+                    valor_radio = opcao10.value;
+                    break;
+                                      }
+                                    
+            }
+
+
+             if(controle==0)
+             {
+
+                if (valor_radio === "2") {
+                    resultado.textContent = "Correto! avança";
+                    resultado.style.color = "green"; } 
+                else {
+                     resultado.textContent = "Errado! Tente novamente.";
+                     resultado.style.color = "red";
+                     }
+                        
+             }
+
+             if(controle==1)
+             {
+
+                 if (valor_radio === "1") {
+                    resultado.textContent = "Correto! avança";
+                    resultado.style.color = "green"; } 
+                 else {
+                     resultado.textContent = "Errado! Tente novamente.";
+                     resultado.style.color = "red";
+                     }
+        
+             }
+                        
+
+            if(controle==2)
+            {
+
+                 if (valor_radio === "2") {
+                    resultado.textContent = "Correto! avança";
+                    resultado.style.color = "green"; } 
+                 else {
+                    resultado.textContent = "Errado! Tente novamente.";
+                    resultado.style.color = "red";
+                     }
+
+            }
+
+            if(controle==3)
+            {
+
+                 if (valor_radio === "3") {
+                    resultado.textContent = "Correto! avança";
+                    resultado.style.color = "green"; } 
+                 else {
+                    resultado.textContent = "Errado! Tente novamente.";
+                    resultado.style.color = "red";
+                     }
+
+            }
+  
+
+
+
+
+
+  
+}
+    </script>
+</body>
+</html>
